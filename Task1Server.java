@@ -17,7 +17,7 @@ class Task1Server
     {
         try {
             //port for server client to transmit data
-            int serverPort = 10007;
+            int serverPort = 19185;
             //create ServerSocket connections
             ServerSocketChannel serverSocket = ServerSocketChannel.open();
             serverSocket.socket().bind(new InetSocketAddress(serverPort));

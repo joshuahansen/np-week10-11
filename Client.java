@@ -15,9 +15,9 @@ class Client
     public static void main(String[] args)
     {
         //server Host name
-        String serverHostname = "127.0.0.1";
+        String serverHostname = "m1-c33n1.csit.rmit.edu.au";
         //server ports
-        int serverPort = 10007;
+        int serverPort = 19185;
         //display details for each server port
         displayDetails(serverPort);
         try {

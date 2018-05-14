@@ -18,7 +18,7 @@ class Task2Server
     {
         try {
             //port for server client to transmit data
-            int serverPort = 10007;
+            int serverPort = 19185;
             //create ServerSocket connections and open selector
             Selector selector = Selector.open();
             ServerSocketChannel serverSocket = ServerSocketChannel.open();
