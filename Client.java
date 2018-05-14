@@ -7,7 +7,7 @@ import java.util.*;
 import java.lang.*;
 import java.util.zip.*;
 /**
-* Client Class
+* Client Class.
 * Gets user input and send to server using SocketChannel and Buffers
 */
 class Client
@@ -51,10 +51,14 @@ class Client
                 //empty buffer and reset to start
                 Arrays.fill(outputBuffer.array(), (byte) 0);
                 outputBuffer.clear();
-                echoSocket.read(inputBuffer);
+
+                int bytesRead = echoSocket.read(inputBuffer);
                 inputBuffer.flip();
+                
+                byte[] temp = new byte[bytesRead];
+                System.arraycopy(inputBuffer.array(), 0, temp, 0, bytesRead);
                 //empty buffer and reset to start
-                String server = new String(inputBuffer.array());
+                String server = new String(temp);
                 Arrays.fill(inputBuffer.array(), (byte) 0);
                 inputBuffer.clear();
                 //if server responds with terminating 'X' character break loop 
