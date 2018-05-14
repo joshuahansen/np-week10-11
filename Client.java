@@ -6,8 +6,11 @@ import java.net.*;
 import java.util.*;
 import java.lang.*;
 import java.util.zip.*;
-
-class task2Client
+/**
+* Client Class
+* Gets user input and send to server using SocketChannel and Buffers
+*/
+class Client
 {
     public static void main(String[] args)
     {
@@ -32,6 +35,7 @@ class task2Client
             InputStream keyboardInputStream = System.in;
             BufferedReader keyboardInput = new BufferedReader(new InputStreamReader(keyboardInputStream));
             String userInput;
+            System.out.println("Enter input: ");
             //while client inputs data loop
             while ((userInput = keyboardInput.readLine()) != null)
             {
@@ -44,10 +48,17 @@ class task2Client
                 {
                     echoSocket.write(outputBuffer);
                 }
+                //empty buffer and reset to start
+                Arrays.fill(outputBuffer.array(), (byte) 0);
+                outputBuffer.clear();
                 echoSocket.read(inputBuffer);
-                String server = new String(inputBuffer.array(), Charset.forName("UTF-8"));
+                inputBuffer.flip();
+                //empty buffer and reset to start
+                String server = new String(inputBuffer.array());
+                Arrays.fill(inputBuffer.array(), (byte) 0);
+                inputBuffer.clear();
                 //if server responds with terminating 'X' character break loop 
-                if(server.equals("X"))
+                if(server.equalsIgnoreCase("X"))
                 {
                     System.out.println("Server: " + server);
                     System.out.println("Close Connection");
@@ -55,6 +66,8 @@ class task2Client
                 }
                 else
                     System.out.println("Server: " + server);
+                
+                System.out.println("Enter input: ");
             }
             //close connection to server
 //            outputBuffer.close();
