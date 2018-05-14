@@ -51,7 +51,11 @@ class Client
                 //empty buffer and reset to start
                 Arrays.fill(outputBuffer.array(), (byte) 0);
                 outputBuffer.clear();
-
+                try {
+                    Thread.sleep(1000);
+                }catch(InterruptedException ex)
+                {
+                }
                 int bytesRead = echoSocket.read(inputBuffer);
                 inputBuffer.flip();
                 
